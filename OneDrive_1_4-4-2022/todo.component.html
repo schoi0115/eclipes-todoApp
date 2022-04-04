@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div *ngIf="errorMessage" class="alert alert-danger">
+                {{errorMessage}}
+            </div>
+            <form [formGroup]="addItemForm" (ngSubmit)="addItem()">
+                <div class="form-group">
+                    <label>Todo Item</label>
+                    <input formControlName="todoitem" type="text" class="form-control">
+                    <div *ngIf="addItemForm.get('todoitem')?.dirty && addItemForm.get('todoitem')?.invalid" class="alert alert-danger">
+                        At least 3 characters required. Must begin with uppercase letter followed by lowercase letters.
+                    </div>
+                </div>
+                <button [disabled]="addItemForm.invalid" class="btn btn-primary">
+                    Add Item
+                </button>
+            </form>
+            <h3 class="mt-5">Todo Items</h3>
+
+            <p *ngFor="let item of items">
+                {{item.id}} | 
+                <span *ngIf="idToUpdate!=item.id">
+                    {{item.todoitem}}
+                    <button
+                        (click)="displayUpdateForm(item)"
+                        class="btn btn-sm btn-warning">
+                        edit
+                    </button>
+                    <button
+                        (click)="deleteItem(item.id)"
+                        class="btn btn-sm btn-danger">
+                        x
+                    </button>
+                </span>
+                <span *ngIf="idToUpdate==item.id">
+                    <form [formGroup]="updateItemForm" (ngSubmit)="updateItem()">
+                        <input formControlName="todoitem" type="text">
+                        <button class="btn btn-sm btn-primary">Update</button>
+                    </form>
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
