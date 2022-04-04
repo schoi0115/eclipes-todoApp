@@ -1,0 +1,17 @@
+<!-- <app-login></app-login> -->
+<!-- <app-stop-watch></app-stop-watch> -->
+<!-- <app-book-ride></app-book-ride> -->
+<!-- <app-register></app-register> -->
+<!-- <app-outer></app-outer> -->
+
+<!-- <app-todo></app-todo> -->
+
+<!-- <app-practice></app-practice> -->
+
+<nav class="navbar navbar-light bg-light">
+    <a routerLink="/login">Login</a>
+    <a [routerLink]="['/todo']">To Do</a>
+    <a [routerLink]="['/stopWatch']">Stop Watch</a>
+    <a [routerLink]="['/register']">Register</a>
+</nav>
+<router-outlet></router-outlet>
